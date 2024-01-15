@@ -64,7 +64,7 @@ app.service('HvadService', function($q, $timeout) {
         onSpeechStart: function() {
             if(speechEndTimeout)
                 $timeout.cancel(speechEndTimeout);
-            speechStartPromise.resolve();
+            // speechStartPromise.resolve();
         },
         onSpeechEnd: function() {
             // vm.onSpeechEnd();
@@ -85,14 +85,14 @@ app.controller("appController", function ($scope, HvadService) {
         HvadService.start()
         .then(function(){
             $scope.msg='starting';
-            HvadService.onSpeechStart()
-            .then(function(){
-                $scope.msg='speach start'
+            // HvadService.onSpeechStart()
+            // .then(function(){
+            //     $scope.msg='speach start'
                 HvadService.onSpeechEnd()
                 .then(function(){
                     $scope.msg='speech end';
                 })
-            })
+            // })
         })
     }
     $scope.pause=function(){
