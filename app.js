@@ -44,10 +44,10 @@ app.service('HvadService', function($q, $timeout) {
         return deferred.promise;
     };
 
-    vm.onSpeechStart = function() {
-        speechStartPromise=$q.defer();
-        return speechStartPromise.promise;
-    }
+    // vm.onSpeechStart = function() {
+    //     speechStartPromise=$q.defer();
+    //     return speechStartPromise.promise;
+    // }
 
     vm.onSpeechEnd = function() {
       speechEndPromise = $q.defer();
@@ -62,12 +62,14 @@ app.service('HvadService', function($q, $timeout) {
         // silenceThreshold: 0.25,
         noise: true,
         onSpeechStart: function() {
+            console.log('speech start')
             if(speechEndTimeout)
                 $timeout.cancel(speechEndTimeout);
             // speechStartPromise.resolve();
         },
         onSpeechEnd: function() {
             // vm.onSpeechEnd();
+            console.log('speech end')
             speechEndTimeout = $timeout(function(){
                 speechEndPromise.resolve();
             }, 2000);
